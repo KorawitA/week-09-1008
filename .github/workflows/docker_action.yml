@@ -35,7 +35,6 @@ jobs:
           ls -la
           /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' ./manifest/dev/deployment.yaml
           /tmp/yq '.spec.template.spec.containers[].image' ./manifest/dev/deployment.yaml
-          - name: Set up Kubernetes
       - name: Set up Kubernetes
         run: | 
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
