@@ -26,8 +26,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/java-week-09-1008:${{ github.sha }}
       - name: Build YQ
-        run: wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\ chmod +x /usr/bin/yq
+        run: wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\ chmod ug+x /usr/bin/yq
       - name: Edit tag for deployment
-        run: yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' deployment.yaml
-      - name: echo
-        run: yq '.spec.template.spec.containers[].image' deployment.yaml
+        run: | 
+          yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' deployment.yaml
+          yq '.spec.template.spec.containers[].image' deployment.yaml
