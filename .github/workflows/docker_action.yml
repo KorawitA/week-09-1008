@@ -35,5 +35,14 @@ jobs:
           ls -la
           /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' ./manifest/dev/deployment.yaml
           /tmp/yq '.spec.template.spec.containers[].image' ./manifest/dev/deployment.yaml
+          - name: Set up Kubernetes
+        - name: Set up Kubernetes
+        run: | 
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        kubectl config set-cluster tcc-01 --server=https://tcc-01.th1.proen.cloud/api/ 
+        kubectl config set-context tcc-01 --cluster=tcc-01 
+        kubectl config set-credentials tcc-01-user --token="eyJhbGciOiJSUzI1NiIsImtpZCI6ImhpMWZNbG5rUWdzQ1hVX1pIcEtMQXRCcklVVVRpUnkzQmRGSjRjSFVVcWMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJmdWxsYWRtaW4tdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZnVsbGFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNmIyMDI3MjYtNjUzZi00ZWMzLThhYjItZGE3YTFjODJjYjUyIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmZ1bGxhZG1pbiJ9.FP2sBFmJAyIxH5JqsM3yIS2nbDWQIJi-9BD8Qd_Dt1VHDeIR9Tq831LaLNpD3hYSAceHtxbTDHdrwXXkJeKZpIVZp2c76_GQOQzWa2lhsTGDrakMBtOrM351IrDuNl2tL4peZSTu0XfKloMQEpSkk8zKnONqOEpFfzzp-BxBz31HfARxoaMXEnayNyQiLaec5cfnvgRDVr0BrMNca5DEhpdFp1oNr_CxrcH6zdO9VdrjS4BgezGUNgfBClWOntzr5Vkt8bg-XQmQdqu8v61OqXMHNOxLvM0uv19l8-S6jNh-pWv-dGXkWfXhOKvt4x1NKYFvQQtu3gNA_x0cN5kO5Q"
+        kubectl config set-context  tcc-01 --user=tcc-01-user
+        kubectl config use-context  tcc-01  
       - name: Apply To Kubernetes
-        run: kubectl get pod
+        run: kubectl get namespace
