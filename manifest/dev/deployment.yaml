@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: java-week-09-1008
+  name: java-week-09-1008
+  namespace: group-2-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-week-09-1008
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: java-week-09-1008
+    spec:
+      containers:
+      - image: korawitry/java-week-09-1008:<tag>
+        name: java-week-09-1008
+
+status: {}
