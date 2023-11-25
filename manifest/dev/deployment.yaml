@@ -21,5 +21,7 @@ spec:
       containers:
       - image: korawitry/java-week-09-1008:<tag>
         name: java-week-09-1008
+        ports:
+        - containerPort: 80
 
 status: {}

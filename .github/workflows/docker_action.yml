@@ -44,4 +44,6 @@ jobs:
           kubectl config set-context  tcc-01 --user=tcc-01-user
           kubectl config use-context  tcc-01  
       - name: Apply To Kubernetes
-        run: kubectl apply -f ./manifest/dev/deployment.yaml -n group-2-dev
+        run: |
+          kubectl apply -f ./manifest/dev/deployment.yaml -n group-2-dev
+          kubectl apply -f ./manifest/dev/service.yaml -n group-2-dev
