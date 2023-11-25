@@ -33,5 +33,5 @@ jobs:
         run: | 
           pwd 
           ls -la
-          /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' /manifest/dev/deployment.yaml
-          /tmp/yq '.spec.template.spec.containers[].image' /manifest/dev/deployment.yaml
+          /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' ./manifest/dev/deployment.yaml
+          /tmp/yq '.spec.template.spec.containers[].image' ./manifest/dev/deployment.yaml
