@@ -31,5 +31,7 @@ jobs:
           chmod 777 /tmp/yq
       - name: Edit tag for deployment
         run: | 
-          /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' ./dev/deployment.yaml
-          /tmp/yq '.spec.template.spec.containers[].image' ./dev/deployment.yaml
+          pwd 
+          ls -la
+          /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' deployment.yaml
+          /tmp/yq '.spec.template.spec.containers[].image' deployment.yaml
