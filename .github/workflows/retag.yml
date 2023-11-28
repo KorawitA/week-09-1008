@@ -43,4 +43,4 @@ jobs:
     - name: docker retag image
       run : |
         git log -1 | head -n 1 | sed 's/commit //' >> $GITHUB_ENV
-        echo "tag : %PREDEFINED_VALUE"
+        echo "tag : $PREDEFINED_VALUE"
