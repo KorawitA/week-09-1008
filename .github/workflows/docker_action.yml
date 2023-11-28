@@ -35,6 +35,8 @@ jobs:
           ls -la
           /tmp/yq -i '.spec.template.spec.containers[].image = "korawitry/java-week-09-1008:${{ github.sha }}"' ./manifest/dev/deployment.yaml
           /tmp/yq '.spec.template.spec.containers[].image' ./manifest/dev/deployment.yaml
+        env: 
+          PREDEFINED_VALUE: ${{ github.sha }}
       - name: Set up Kubernetes
         run: | 
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -49,3 +51,4 @@ jobs:
           kubectl apply -f ./manifest/dev/deployment.yaml -n group-2-dev
           kubectl apply -f ./manifest/dev/service.yaml -n group-2-dev
           kubectl apply -f ./manifest/dev/ingress.yaml -n group-2-dev
+          echo "test : $PREDEFINED_VALUE"
