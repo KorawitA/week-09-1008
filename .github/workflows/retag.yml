@@ -45,5 +45,5 @@ jobs:
       uses: docker/setup-buildx-action@v3
     - name: docker retag image
       run : |
-        echo "version_sha=${{git log -1 | head -n 1 | sed 's/commit //'}}" >> $GITHUB_ENV
-        echo "tag : $version_sha"
+        git log -1 | head -n 1 | sed 's/commit //' >> ${{ env.PREDEFINED_VALUE }}
+        echo "tag : ${{ env.PREDEFINED_VALUE }}"
